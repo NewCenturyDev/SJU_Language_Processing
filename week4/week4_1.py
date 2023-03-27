@@ -17,15 +17,15 @@ def load(data_file_name):
     data = pd.read_csv(DATA_IN_PATH + data_file_name)
     reviews = list(data['review'])
     sentiment = None
-    id = None
+    data_id = None
     if data_file_name is TRAIN_CLEAN_DATA:
         sentiment = list(data['sentiment'])
     if data_file_name is TEST_CLEAN_DATA:
-        id = list(data['id'])
+        data_id = list(data['id'])
     return {
         'reviews': reviews,
         'sentiment': sentiment,
-        'id': id,
+        'id': data_id,
     }
 
 
