@@ -1,4 +1,4 @@
-import os
+# import os
 
 import numpy as np
 import pandas as pd
@@ -10,6 +10,7 @@ from sklearn.linear_model import LogisticRegression
 
 
 # 로깅 라이브러리 세팅
+# noinspection DuplicatedCode
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 DATA_IN_PATH = "~/Documents/SJU_Language_Processing/week3/data/preped/"
@@ -29,6 +30,7 @@ WORD2VEC_PARAMS = {
 
 def load_train_data():
     train_data = pd.read_csv(DATA_IN_PATH + TRAIN_CLEAN_DATA)
+    # Word2Vec은 단어로 표현된 리스트를 입력값으로 사용
     reviews = list(train_data['review'])
     return {
         'reviews': reviews,
@@ -62,6 +64,7 @@ def split_data(data_vecs, sentiments):
 
 def build_model(clean_train_reviews):
     # word2vec 모델을 구성 및 빌드하는 함수
+    # 원래 데이터의 문장들을 공백 단위로 쪼개서 삽입
     sentences = []
     for review in clean_train_reviews:
         sentences.append(review.split())
@@ -96,9 +99,9 @@ def get_features(words, model, num_features):
             num_words += 1
             feature_vector = np.add(feature_vector, model.wv[w])
 
-        # 문장의 단어 수로 나누어 단어 벡터의 평균값을 문장 벡터로 취급
-        feature_vector = np.divide(feature_vector, num_words)
-        return feature_vector
+    # 문장의 단어 수로 나누어 단어 벡터의 평균값을 문장 벡터로 취급
+    feature_vector = np.divide(feature_vector, num_words)
+    return feature_vector
 
 
 def get_dataset(reviews, model, num_features):
@@ -113,10 +116,10 @@ def get_dataset(reviews, model, num_features):
 
 
 def save_result_to_csv(test_data, test_predicted):
-    if not os.path.exists(DATA_OUT_PATH):
-        os.makedirs(DATA_OUT_PATH)
+    # if not os.path.exists(DATA_OUT_PATH):
+    #     os.makedirs(DATA_OUT_PATH)
 
-    answer_dataset = pd.DataFrame({'id': test_data['id'], 'sentiment': test_predicted})
+    answer_dataset = pd.DataFrame({'id': test_data['ids'], 'sentiment': test_predicted})
     answer_dataset.to_csv(DATA_OUT_PATH + 'bag_of_words_lgs.csv', index=False, quoting=3)
 
 

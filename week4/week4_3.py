@@ -88,7 +88,7 @@ def save_result_to_csv(test_data, test_predicted):
     #     os.makedirs(DATA_OUT_PATH)
 
     answer_dataset = pd.DataFrame({'id': test_data['ids'], 'sentiment': test_predicted})
-    answer_dataset.to_csv(DATA_OUT_PATH + 'bag_of_words_model.csv', index=False, quoting=3)
+    answer_dataset.to_csv(DATA_OUT_PATH + 'bag_of_words_forest.csv', index=False, quoting=3)
 
 
 def main():
