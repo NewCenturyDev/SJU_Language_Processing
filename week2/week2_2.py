@@ -3,11 +3,11 @@ import pandas as pd
 import tensorflow as tf
 import numpy as np
 import matplotlib
-matplotlib.use('TkAgg')
-
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 import seaborn as sns
+
+matplotlib.use('TkAgg')
 
 
 def download_data():

@@ -8,9 +8,9 @@ from wordcloud import WordCloud
 import seaborn as sns
 from bs4 import BeautifulSoup
 from nltk.corpus import stopwords
+import matplotlib.pyplot as plt
 
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
 DATA_PATH = "/week3/data/"
 
@@ -92,14 +92,6 @@ def show_word_cnt_per_review(train_data):
     plt.show()
     # 단어 개수 통계 산출
     print_statistics("단어 개수", train_word_cnts)
-    # print("리뷰 길이 최대 값: {}".format(np.max(train_word_cnts)))
-    # print("리뷰 길이 최소 값: {}".format(np.min(train_word_cnts)))
-    # print("리뷰 길이 평균 값: {:2f}".format(np.mean(train_word_cnts)))
-    # print("리뷰 길이 표준편차: {:2f}".format(np.std(train_word_cnts)))
-    # print("리뷰 길이 중간 값: {}".format(np.median(train_word_cnts)))
-    # # 4분위의 경우 0~100 스케일로 되어 있음
-    # print("리뷰 길이 제 1 사분위: {}".format(np.percentile(train_word_cnts, 25)))
-    # print("리뷰 길이 제 3 사분위: {}".format(np.percentile(train_word_cnts, 75)))
 
 
 def show_propotion_of_marks(train_data):

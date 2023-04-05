@@ -9,8 +9,8 @@ from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 from nltk.corpus import stopwords
 
-DATA_PATH = "/week3/data/"
-PREPED_DATA_PATH = "/week3/data/preped/"
+DATA_PATH = "/Users/newcentury99/Documents/SJU_Language_Processing/week3/data/"
+PREPED_DATA_PATH = "/Users/newcentury99/Documents/SJU_Language_Processing/week3/data/preped/"
 MAX_SEQ_LEN = 174
 tokenizer = Tokenizer()
 
@@ -70,15 +70,18 @@ def save_prep_train_data(train_inputs, train_labels, clean_train_df, data_config
     json.dump(data_configs, open(PREPED_DATA_PATH + data_config_name, "w"), ensure_ascii=False)
 
 
-def save_prep_test_data(test_inputs, clean_test_df):
+def save_prep_test_data(test_inputs, clean_test_df, test_id):
     # 디렉터리 없을 시 생성
     if not os.path.exists(PREPED_DATA_PATH):
         os.makedirs(PREPED_DATA_PATH)
 
     test_input_data = "test_input.npy"
     test_clean_data = "test_clean.csv"
+    test_id_data = 'test_id.npy'
+
     # 넘파이 배열을 바이너리로 저장
     np.save(open(PREPED_DATA_PATH + test_input_data, "wb"), test_inputs)
+    np.save(open(PREPED_DATA_PATH + test_id_data, 'wb'), test_id)
     # 텍스트 CSV 저장
     clean_test_df.to_csv(PREPED_DATA_PATH + test_clean_data, index=False)
 
@@ -122,14 +125,14 @@ def prep_test_data():
         clean_test_reviews.append(preprocessing(review, remove_stopwords=True))
 
     clean_test_df = pd.DataFrame({"review": clean_test_reviews, "id": test_data["id"]})
-    np.array(test_data["id"])
+    test_id = np.array(test_data["id"])
 
     # 토크나이징 객체를 새롭게 만들면 인덱스가 바뀌어 적절하게 평가하거나 테스트 할 수 없음
     text_sequences = tokenizer.texts_to_sequences(clean_test_reviews)
     test_inputs = pad_sequences(text_sequences, maxlen=MAX_SEQ_LEN, padding="post")
 
     # 테스트 데이터 저장
-    save_prep_test_data(test_inputs, clean_test_df)
+    save_prep_test_data(test_inputs, clean_test_df, test_id)
 
 
 def main():

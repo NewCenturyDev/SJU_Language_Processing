@@ -90,7 +90,7 @@ def main():
     train_dataset = load(TRAIN_CLEAN_DATA)
     vectorizing_result = train_tf_idf_vectorizing(train_dataset['reviews'], train_dataset['sentiment'])
     trained_model = do_train(vectorizing_result['X_train'], vectorizing_result['y_train'])
-    test_predicted = do_validation(trained_model, vectorizing_result['X_eval'], vectorizing_result['y_eval'])
+    do_validation(trained_model, vectorizing_result['X_eval'], vectorizing_result['y_eval'])
     eval_dataset = load(TEST_CLEAN_DATA)
     # 평가 데이터 TF-IDF 벡터화
     eval_predicted = test_tf_idf_vectorizing(eval_dataset['reviews'], vectorizing_result['vectorizer'], trained_model)
