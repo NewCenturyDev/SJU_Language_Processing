@@ -30,7 +30,7 @@ tf.random.set_seed(SEED_NUM)
 
 
 def load_train_data():
-    # RNN 학습 데이터 로드 (numpy 배열)
+    # CNN 학습 데이터 로드 (numpy 배열)
     train_input = np.load(DATA_IN_PATH+TRAIN_INPUT_DATA, 'r')
     train_label = np.load(DATA_IN_PATH+TRAIN_LABEL_DATA, 'r')
     prepro_configs = json.load(open(DATA_IN_PATH+DATA_CONFIGS, 'r', encoding='utf-8'))
@@ -43,7 +43,7 @@ def load_train_data():
 
 
 def load_test_data():
-    # RNN 테스트 데이터 로드 (numpy 배열)
+    # CNN 테스트 데이터 로드 (numpy 배열)
     test_input = np.load(DATA_IN_PATH + TEST_INPUT_DATA, 'r')
     test_id = np.load(open(DATA_IN_PATH + TEST_ID_DATA, 'rb'), allow_pickle=True)
     return {
