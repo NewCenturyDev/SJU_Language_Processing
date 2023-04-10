@@ -17,6 +17,7 @@ matplotlib.use('TkAgg')
 # 데이터 입출력 경로
 DATA_IN_PATH = "/Users/newcentury99/Documents/SJU_Language_Processing/week3/data/preped/"
 DATA_OUT_PATH = "/Users/newcentury99/Documents/SJU_Language_Processing/week5/data/"
+# noinspection DuplicatedCode
 TRAIN_INPUT_DATA = 'train_input.npy'
 TRAIN_LABEL_DATA = 'train_label.npy'
 TEST_INPUT_DATA = "test_input.npy"
