@@ -81,12 +81,12 @@ def preprocess_data(train_data):
     train_q1_data = 'train_q1.npy'
     train_q2_data = 'train_q2.npy'
     train_label_data = 'train_label.npy'
-    data_configs = 'data_configs.json'
+    data_config_name = 'data_configs.json'
 
     np.save(open(DATA_OUT_PATH + train_q1_data, 'wb'), q1_data)
     np.save(open(DATA_OUT_PATH + train_q2_data, 'wb'), q2_data)
     np.save(open(DATA_OUT_PATH + train_label_data, 'wb'), labels)
-    json.dump(data_configs, open(DATA_OUT_PATH + data_configs, 'w'))
+    json.dump(data_configs, open(DATA_OUT_PATH + data_config_name, 'w'))
     return tokenizer
 
 
