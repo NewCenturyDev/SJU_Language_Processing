@@ -78,7 +78,7 @@ def crowl_sandwich_chicago():
     data = {"Rank": rank, "Menu": main_menu, "Cafe": cafe_name, "URL": url_add}
     df = pd.DataFrame(data, columns=["Rank", "Cafe", "Menu", "URL"])
     df.head(5)
-    df.to_csv(DATA_OUT_PATH + "result.csv")
+    df.to_csv(DATA_OUT_PATH + "best_sandwiches_list_chicago.csv")
 
 
 def crowl_finance_naver_main():
