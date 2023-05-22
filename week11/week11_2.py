@@ -95,15 +95,15 @@ def load_vocabulary(path, vocab_path, tokenize_as_morph=False):
                 for word in words:
                     vocabulary_file.write(word + '\n')
 
-            # 사전 파일이 존재하면 여기에서 그 파일을 불러서 배열에 넣어 준다
-            with open(vocab_path, 'r', encoding='utf-8') as vocabulary_file:
-                for line in vocabulary_file:
-                    vocabulary_list.append(line.strip())
+    # 사전 파일이 존재하면 여기에서 그 파일을 불러서 배열에 넣어 준다
+    with open(vocab_path, 'r', encoding='utf-8') as vocabulary_file:
+        for line in vocabulary_file:
+            vocabulary_list.append(line.strip())
 
-            # 배열에 내용을 키와 값이 있는 딕셔너리 구조로 만든다
-            word2idx, idx2word = make_vocabulary(vocabulary_list)
-            # 두가지 형태의 키와 값이 있는 형태를 리턴한다
-            return word2idx, idx2word, len(word2idx)
+        # 배열에 내용을 키와 값이 있는 딕셔너리 구조로 만든다
+        word2idx, idx2word = make_vocabulary(vocabulary_list)
+        # 두가지 형태의 키와 값이 있는 형태를 리턴한다
+        return word2idx, idx2word, len(word2idx)
 
 
 # 인코더에 적용될 입력값을 만드는 전처리 함수

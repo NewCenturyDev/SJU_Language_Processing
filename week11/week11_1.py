@@ -1,12 +1,6 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
-from collections import Counter
 from konlpy.tag import Okt
-
-from functools import reduce
-from wordcloud import WordCloud
 
 DATA_IN_PATH = './data'
 data = pd.read_csv(DATA_IN_PATH + 'ChatBotData.csv', encoding='utf-8')
