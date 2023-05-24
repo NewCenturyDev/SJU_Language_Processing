@@ -10,7 +10,9 @@ word2idx, idx2word, vocab_size = load_vocabulary(DATA_IN_FILE_PATH, VOCAB_PATH, 
 
 index_inputs, input_seq_len = enc_processing(inputs, word2idx, tokenize_as_morph=False)
 index_outputs, output_seq_len = dec_output_processing(outputs, word2idx, tokenize_as_morph=False)
-index_targets = dec_target_processing(outputs, word2idx, tokenize_as_morph=False)
+
+# 형태소 단위로 할 것 이면 True, 아니면 False
+index_targets = dec_target_processing(outputs, word2idx, tokenize_as_morph=True)
 
 data_configs = {
     'word2idx': word2idx,

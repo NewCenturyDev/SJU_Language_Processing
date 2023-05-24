@@ -8,6 +8,8 @@ from konlpy.tag import Okt
 
 # preprocess.py
 
+JVM_HOME = "/Library/Java/JavaVirtualMachines/jdk1.8.0_361.jdk/Contents/Home/jre/lib/server/libjvm.dylib"
+
 FILTERS = "([~.,!?\"':;)(])"
 PAD = "<PAD>"  # 의미 없는 패딩 토큰
 STD = "<SOS>"  # 시작 토큰을 의미
@@ -48,7 +50,7 @@ def data_tokenizer(data):
 
 # 한글 텍스트를 토크나이징 하기 위해 형태소로 분리하는 함수
 def prepro_like_morphlized(data):
-    morph_analyzer = Okt()
+    morph_analyzer = Okt(jvmpath=JVM_HOME)
     result_data = list()
     for seq in tqdm(data):
         morphlized_seq = ' '.join(morph_analyzer.morphs(seq.replace(' ', '')))
