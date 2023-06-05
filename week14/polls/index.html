@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Django API</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <body>
+        <div class="container">
+            <div class="row" style="margin-top: 30px;">
+                영화 리뷰:
+            </div>
+
+            <div class="row" style="margin-top: 5px;">
+                <textarea id="text1" type="text" style="width:100%;height:200px;"></textarea>
+            </div>
+
+            <div class="row" style="margin-top: 30px;padding-left:-30px;"> 분류 결과:
+                <span style="margin-left:20px;" id="answer">   </span >
+            </div>
+
+            <div class="row" style="float: right;margin-top: 30px;" id="send">
+                <button>제출</button>
+            </div>
+        </div>
+        <script>
+            $("#send").click(function (e) {
+                console.log($("#text1").val());
+                data = $("#text1").val();
+                if(data.length==0){
+                    alert("영화 리뷰를 입력하세요!!");
+                }else{
+                    $.ajax({
+                    type: 'POST'
+                    , data: {'data':data,'csrfmiddlewaretoken': '{{ csrf_token }}'}
+                    , url: 'classification_func/'
+                    , success: function (data) {
+                        answer_result = data.answer[0][0]
+                        console.log(answer_result);
+                        if(answer_result.length==0){
+                            alert("영화 리뷰 분류 실패!");
+                        }else{
+                            document.getElementById("answer").innerHTML = answer_result;
+                        }
+                    }, error: function (e) {
+                        alert("데이터 반환 실패!");
+                    }
+                    });
+                }
+
+            });
+            $("#text1").click(function (e) {
+                document.getElementById("answer").innerHTML = "";
+                text = $("#text1").val();
+                if(text.length==0){
+                    document.getElementById("answer").innerHTML = "";
+                }
+            });
+
+        </script>
+    </body>
+</html>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+    <meta charset="UTF-8">
+    <title>Django API</title>
+    <body>
+        <h1>연결 성공</h1>
+    </body>
+</html> -->
