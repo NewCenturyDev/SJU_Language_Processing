@@ -214,6 +214,9 @@ poetry.toml
 pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm
+/project/data
+/project/preprocessed
+/project/result
 /week7/data
 /week12/result/transformer
 /week14/Models
