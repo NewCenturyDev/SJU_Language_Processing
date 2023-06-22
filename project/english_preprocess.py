@@ -110,9 +110,6 @@ def main():
     print("데이터 벡터화 종료")
     tokenizer_json = tokenizer.to_json()
     json.dump(tokenizer_json, open(PREPED_DATA_PATH + 'tokenizer.json', "w"), ensure_ascii=False)
-    print(prep_test_data(dataset['text'][0]))
-    print(prep_test_data(dataset['text'][1]))
-    print(prep_test_data(dataset['text'][2]))
 
 
 # 스크립트를 실행하려면 여백의 녹색 버튼을 누릅니다.
