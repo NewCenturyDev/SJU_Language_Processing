@@ -2,12 +2,8 @@ import json
 import os
 import platform
 import re
-import sys
 
 import nltk
-
-# keras 로그 제거
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from keras.layers import Dense, Dropout, Embedding, LSTM, Convolution1D, MaxPooling1D, Activation
 from keras.models import Sequential
 from keras_preprocessing.sequence import pad_sequences
@@ -15,15 +11,12 @@ from keras_preprocessing.text import tokenizer_from_json
 from nltk.corpus import stopwords
 
 # 환경변수
-dir = os.path.dirname(__file__)
-NLTK_PATH_WINDOWS = dir + '\\nltk_data'
-NLTK_PATH_LINUX = '/app/data/nltk_data'
+NLTK_PATH_WINDOWS = '/project/nltk_data'
+NLTK_PATH_LINUX = '/app/data'
 nltk.data.path.append(NLTK_PATH_WINDOWS if platform.system() == 'Windows' else NLTK_PATH_LINUX)
 
-PATH = dir + '/result/nlp_classifier_en/'
-TOKENIZER_PATH_WINDOWS = dir + '\\result\\nlp_classifier_en\\tokenizer.json'
-TOKENIZER_PATH_LINUX = '/app/data/result/nlp_classifier_en/tokenizer.json'
-TOKENIZER_PATH = TOKENIZER_PATH_WINDOWS if platform.system() == 'Windows' else TOKENIZER_PATH_LINUX
+PATH = './result/nlp_classifier_en/'
+TOKENIZER_PATH = './preprocessed/tokenizer.json'
 SAVE_FILE_NM = 'weights.h5'  # 저장된 best model 이름
 MAX_SEQ_LEN = 52
 
@@ -86,7 +79,9 @@ def prep_test_data(sentence):
     saved_tokenizer = tokenizer_from_json(json.load(open(TOKENIZER_PATH, 'r', encoding='utf-8')))
 
     # 토크나이징 객체를 새롭게 만들면 인덱스가 바뀌어 적절하게 평가하거나 테스트 할 수 없으므로 최초 생성된 객체 사용
+    print([clean_text])
     text_sequences = saved_tokenizer.texts_to_sequences([clean_text])
+    print(text_sequences)
     vectorized_test_inputs = pad_sequences(text_sequences, maxlen=MAX_SEQ_LEN, padding="post")
 
     # 벡터화된 테스트 데이터 반환
@@ -106,14 +101,14 @@ def do_validation(test_input):
 
 
 # noinspection DuplicatedCode
-def main(argv):
-    test_sentence = str(argv[1])
+def main():
+    test_sentence = "shit, I messed my exam."
     test_predicted = do_validation(test_sentence)
     print(test_predicted)
 
 
 # 스크립트를 실행하려면 여백의 녹색 버튼을 누릅니다.
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
 
 # https://www.jetbrains.com/help/pycharm/에서 PyCharm 도움말 참조

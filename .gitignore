@@ -215,6 +215,7 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pycharm
 /project/data
+/project/nltk_data
 /project/preprocessed
 /project/result
 /week7/data
