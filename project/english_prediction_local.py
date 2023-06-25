@@ -103,7 +103,7 @@ def do_validation(test_input):
 
 # noinspection DuplicatedCode
 def main():
-    test_sentence = "shit, I messed my exam."
+    test_sentence = "I'm so happy!"
     test_predicted = do_validation(test_sentence)
     print(test_predicted)
 
