@@ -26,8 +26,8 @@ def load_pretrained_model():
     model_name = 'nlp_classifier_en'
     kargs = {
         'model_name': model_name,
-        'vocab_size': 1920,
-        'embedding_size': 32,
+        'vocab_size': 113677,
+        'embedding_dimension': 32,
         'dropout_rate': 0.5,
         'cnn_dimension': 128,
         'lstm_dimension': 128,
@@ -36,7 +36,7 @@ def load_pretrained_model():
     }
     # noinspection DuplicatedCode
     model = Sequential()
-    model.add(Embedding(input_dim=kargs['vocab_size'], output_dim=kargs['embedding_size']))
+    model.add(Embedding(input_dim=kargs['vocab_size'], output_dim=kargs['embedding_dimension']))
     model.add(Convolution1D(kargs['cnn_dimension'], kargs['output_dimension'], padding='same', strides=1))
     model.add(Activation('leaky_relu'))
     model.add(MaxPooling1D(pool_size=2))
@@ -46,7 +46,7 @@ def load_pretrained_model():
     model.add(Dense(kargs['dense_dimension'], activation='leaky_relu'))
     model.add(Dropout(kargs['dropout_rate']))
     model.add(Dense(kargs['output_dimension'], activation='softmax'))
-    model.build(input_shape=(kargs['vocab_size'], kargs['embedding_size']))
+    model.build(input_shape=(kargs['vocab_size'], kargs['embedding_dimension']))
     model.load_weights(os.path.join(PATH, SAVE_FILE_NM))
     return model
 

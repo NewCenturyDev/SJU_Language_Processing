@@ -79,8 +79,8 @@ def setup_model_and_train(train_input, train_label):
     # https://www.kaggle.com/code/ngyptr/multi-class-classification-with-lstm
     kargs = {
         'model_name': model_name,
-        'vocab_size': 1920,
-        'embedding_size': 32,
+        'vocab_size': 113677,
+        'embedding_dimension': 32,
         'dropout_rate': 0.5,
         'cnn_dimension': 128,
         'lstm_dimension': 128,
